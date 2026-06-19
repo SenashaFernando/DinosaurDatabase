@@ -27,7 +27,7 @@ nav a{
     gap: 20px;
     padding: 20px;
 }
-/* individual dinosaur cards*/
+/* individual dinosaur card*/
 .dinosaur-card{
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -35,5 +35,28 @@ nav a{
     text-align: center;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* fitting images inside the card */
+.dinosaur-card img {
+    width: 100%;
+    height: auto;
+}
+
+/* info hidden by default */
+.hidden-info {
+    display: none;
+}
+
+/* info appear when the card is hovered*/
+.dinosaur-card: :hover .hidden-info {
+    display: block;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f2f2f2;
+    border-radius: 8px;
 }
 
