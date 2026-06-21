@@ -1,0 +1,21 @@
+{% extendds 'layout.html' %}
+{% block content %}
+<h1 style= "color : rgb(12,4,56);" >ALL DINOSAURS</h1>
+
+<div class= "dinosaur-grid">
+    {% for dinosaur in dinosaurs %}
+    <div class= "dinosaur-card">
+
+        <h3>{{ dinosaur[1] }}</h3>
+
+        {% if dinosaur[3] %}
+         <img src="{{ url_for('static', filename='images/'~ dinosaur[3]) }}"
+alt= "{{ dinosaur[1] }}" >
+        {% else %}
+            <div class="no-image">No Image Found</div>
+        {% end if %}
+
+
+
+    </div>
+ </div>
