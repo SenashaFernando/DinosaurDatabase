@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- page title - jinja variable -->
+        <title>Dinosaur Database - {{ page_title }}</title>
+        <!--Link to external CSS file -->
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        {% include "header.html" %}
+        {% include "nav.html" %}
+        <hr>
+        {% block content %}{% endblock %}
+        <hr>
+        {% include "footer.html" %}
+    </body>
+</html>
