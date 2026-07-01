@@ -13,7 +13,13 @@
             alt= "{{ dinosaur[1] }}" >
         {% else %}
             <div class="no-image">No Image Found</div>
+
+        {%if Era[1] %}
+         <div class="hidden-info">
+         <p><strong>Era:</strong>{{Era[4]}}</p>
         {% endif %}
+
+    </div>
 
     </div>
     {% endfor %}

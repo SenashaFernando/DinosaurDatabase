@@ -1,5 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, session
 import _sqlite3
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -21,3 +23,31 @@ def dinosaurs_page():
 
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.01", port=5000)
+
+@app.route('add_dinosaur', methods=['GET', 'POST'])
+def add_dinosaur():
+    #POST = form submitted
+    if request.method == 'POST':
+        name        = request.form['name']
+        diet        = request.form['diet']
+        habitat     = request.form['habitat']
+        location    = request.form['location']
+        description = request.form['description']
+        era_name    = request.form['era_name']
+
+#Handle the uploaded image file
+image_file = request.files['image']
+if image_file and image_file.filename != '':
+    filename = secure_filename(image_file.filename)
+    image_file.save(os.path.join('static', 'images', filename))
+else:
+    filename = None #No image uploaded
+
+#Connect to database
+conn = sqlite3.connect('dinosaurs.db')
+cur = conn.cursor()
+
+#insert new dinosaur
+cur.execute()
+
+
