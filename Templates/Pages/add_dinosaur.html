@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h2> Add a New Dinosaur</h2>
+<form method="POST" action="/add_dinosaur" enctype="multipart/form-data">
+
+    <label for="name">Dinosaur Name</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label for="diet">Diet</label><br>
+    <input type="text" name="diet" required><br>
+
+    <label>Era</label><br>
+    {% for era in all_eras %}
+        <input type="checkbox" name="eras" value="{{era[0]}}"> {{era[1]}}<br>
+        {% endfor %}
+
+        <br>
+        
+        <label for="image">Upload Image</label><br>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+
+        <button type="submit">Save Dinosaur</button>
+
+</form>
+
+{% endblock %}

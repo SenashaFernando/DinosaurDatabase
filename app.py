@@ -48,6 +48,8 @@ conn = sqlite3.connect('dinosaurs.db')
 cur = conn.cursor()
 
 #insert new dinosaur
-cur.execute()
+cur.execute(
+    
+)
 
 
