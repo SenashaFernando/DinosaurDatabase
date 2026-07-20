@@ -19,6 +19,12 @@
          <p><strong>Era:</strong>{{Era[4]}}</p>
         {% endif %}
 
+        <form method="POST" action="/delete/{{ Dinosaur[0] }}"
+               onsubmit="return confirm('Delete this dinosaur?')">
+            <button  type="submit" class="delete-btn">Delete</button>
+        </form>
+
+
     </div>
 
     </div>
