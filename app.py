@@ -52,4 +52,12 @@ cur.execute(
     
 )
 
+@app.route('/delete/<int:id>' , methods=['POST'])
+def delete_dinosaur(id):
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+    cur.execute('DELETE FROM Dinosaurs WHERE id = ?', (id))
+    conn.comit()
+    conn.close()
+    return redirect(url_for('dinosaurs_page'))
 
