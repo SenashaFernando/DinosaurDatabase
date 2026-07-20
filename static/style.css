@@ -60,3 +60,17 @@ footer {
     border-radius: 8px;
 }
 
+.delete-btn {
+    background-color: #cc3333;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    background-color: #991111;
+}
+
