@@ -27,6 +27,13 @@
 
     </div>
 
+    {% if session.get('admin') %}
+    <form method="POST" action="/delete/{{ Dinosaur[1] }}"
+    onsubmit="return confirm('Delete this dinosaur?')">
+    <button type="submit" class="delete-btn">Delete</button>
+    </form>
+    {% endif %}
+
     </div>
     {% endfor %}
  </div>
