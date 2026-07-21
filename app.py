@@ -3,7 +3,8 @@ import _sqlite3
 import os
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app =Flask(__name__)
+app.secret_key = "supersecretkey"
 
 @app.route("/")
 def root():
