@@ -3,7 +3,7 @@ import _sqlite3
 import os
 from werkzeug.utils import secure_filename
 
-app =Flask(__name__)
+app =Flask(__name__):
 app.secret_key = "supersecretkey"
 
 @app.route("/")
@@ -61,4 +61,34 @@ def delete_dinosaur(id):
     conn.comit()
     conn.close()
     return redirect(url_for('dinosaurs_page'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST' :
+        username = request.form['username']
+        password = request.form['password']
+
+        #simple hardcoded login
+        if username == 'admin' and password == 'dinosaur123' :
+            session['admin'] == True
+            return redirect(url_for('dinosaurs_page'))
+        else: 
+            return render_template('login.html', error="Invalid Login")
+        
+@app.route('/logout')
+def logout():
+    session.pop('admin', None)
+    return redirect(url_for('dinosaurs_page'))
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete_pizza(id):
+    if not session.get('admin'):
+        return "Not authorised", 403
+    
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+    cur.execute('DELETE FROM pizza WHERE id = ?', (id))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('pizzas_page'))
 
