@@ -81,14 +81,25 @@ def logout():
     return redirect(url_for('dinosaurs_page'))
 
 @app.route('/delete/<int:id>', methods=['POST'])
-def delete_pizza(id):
+def delete_dinosaur(id):
     if not session.get('admin'):
         return "Not authorised", 403
     
     conn = sqlite3.connect('dinosaurs.db')
     cur = conn.cursor()
-    cur.execute('DELETE FROM pizza WHERE id = ?', (id))
+    cur.execute('DELETE FROM dinosaur WHERE id = ?', (id))
     conn.commit()
     conn.close()
-    return redirect(url_for('pizzas_page'))
+    return redirect(url_for('dinosaurs_page'))
 
+@app.route("/dinosaurs")
+def dinosaurs_page():
+    search = request.args.get('search', '')
+
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+
+    if search:
+        cur.execute(
+            SELECT dinosaur_id, name, diet, habitat, 
+        )
