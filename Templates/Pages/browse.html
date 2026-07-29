@@ -1,0 +1,38 @@
+# 4.pizza_detail.html, pg 17, 
+
+{% extends 'layout.html' %}
+{% block content %}
+
+<h2>{{Dinosaurs[1]}}</h2>
+
+{% if Dinosaurs[6] %}
+    <img src="{{ url_for('static', filename='images/'~ Dinosaurs[3]) }}"
+width="300">
+{% endif %}
+
+{% if Dinosaurs[7] %}
+<p><strong>License:</strong>{{Dinosaurs[7]}}</p>
+{% endif %}
+
+<p><strong>Era:</strong></p> ${{ "%.2f" |format(Dino_Era[2]) }}</p>
+
+{% if Dinosaurs[2] %}
+<p><strong>Diet:</strong>{{Dinosaurs[2]}}</p>
+{% endif %}
+
+{% if Dinosaurs[3] %}
+<p><strong>Habitat:</strong>{{Dinosaurs[3]}}</p>
+{% endif %}
+
+{% if Dinosaurs[4] %}
+<p><strong>Location:</strong>{{Dinosaurs[4]}}</p>
+{% endif %}
+
+{% if Dinosaurs[5] %}
+<p><strong>Description:</strong>{{Dinosaurs[5]}}</p>
+#edit code later to alow the description to be displayed or hidden. make a card in css
+{% endif %}
+
+<a href="/dinosaurs">⬅ Back to all dinosaurs</a>
+
+{% endblock %}
