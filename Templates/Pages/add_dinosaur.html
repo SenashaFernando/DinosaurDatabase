@@ -25,3 +25,13 @@
 </form>
 
 {% endblock %}
+
+#validating image type
+
+ALLOWED_EXTENTIONS = {'png', 'jpg', 'gif'}
+
+if image_file and image_file.filename != '' :
+ext = image_file.filename.rsplit('.', 1) [1].lower()
+if ext not in ALLOWED_EXTENTIONS:
+return "Invalid image type"
+
