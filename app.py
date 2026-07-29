@@ -103,3 +103,13 @@ def dinosaurs_page():
         cur.execute(
             SELECT dinosaur_id, name, diet, habitat, 
         )
+
+@app.route('/dinosaurs/<int:id>')
+def dinosaurs_detail(id):
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+
+    cur.execute(
+        SELECT Dinosaur_id, Dino_era, image,
+            GROUP CONCAT() 
+    ) # page 16, 3.Add new route to link dinosaur details, unfinished 
