@@ -70,7 +70,7 @@ footer {
     margin-top: 10px;
 }
 
-.delete-btn:hover {
+.delete-btn :hover {
     background-color: #991111;
 }
 
@@ -90,6 +90,14 @@ footer {
     border-radius: 10px;
     padding: 15px;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #e3f3ed;
 
+}
+
+.dino-description-card :hover .hidden-info{
+    display: block;
+}
+
+.era-description-card :hover .hidden-info{
+    display: block;
 }
