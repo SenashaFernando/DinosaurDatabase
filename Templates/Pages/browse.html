@@ -29,7 +29,13 @@ width="300">
 {% endif %}
 
 {% if Dinosaurs[5] %}
-<p><strong>Description:</strong>{{Dinosaurs[5]}}</p>
+<details class="dino-description-card">
+    <summary class="dino-text">
+        <p><strong>Description:</strong>{{Dinosaurs[5].description}}</p>
+        
+    </summary>
+</details>
+
 #edit code later to alow the description to be displayed or hidden. make a card in css
 {% endif %}
 

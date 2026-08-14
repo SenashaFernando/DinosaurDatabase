@@ -101,7 +101,10 @@ def dinosaurs_page():
 
     if search:
         cur.execute(
-            SELECT dinosaur_id, name, diet, habitat, 
+            SELECT Dinosaurs.dinosaur_id, Dinosaurs.name, Dinosaurs.diet, Dinosaurs.habitat, Dinosaurs.location, Dinosaurs.description, 
+            GROUP_CONCAT(Eras.era, ',') AS eras
+            FROM Dinosaurs 
+            LEFT JOIN era ON 
         )
 
 @app.route('/dinosaurs/<int:id>')
@@ -113,3 +116,4 @@ def dinosaurs_detail(id):
         SELECT Dinosaur_id, Dino_era, image,
             GROUP CONCAT() 
     ) # page 16, 3.Add new route to link dinosaur details, unfinished 
+
