@@ -14,18 +14,44 @@ def root():
 #eventually link each one to a details page
 @app.route("/dinosaurs")
 def dinosaurs_page():
+
     conn = sqlite3.connect("dinosaurs.db")
     cur = conn.cursor()
-    cur.execute('SELECT dinosaur_id, name, diet, habitat, location, description, image, license_info FROM Dinosaurs ORDER BY name ASC;')
+
+    cur.execute('''
+        SELECT
+            Dinosaurs.dinosaur_id,
+            Dinosaurs.name,
+            Dinosaurs.diet,
+            Dinosaurs.habitat,
+            Dinosaurs.location,
+            Dinosaurs.description,
+            Dinosaurs.image,
+            Dinosaurs.license_info,
+            GROUP_CONCAT(Era.era_name) AS eras
+        FROM Dinosaurs
+        LEFT JOIN Dino_Era
+            ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
+        LEFT JOIN Era
+            ON Dino_Era.era_id = Era.era_id
+        GROUP BY Dinosaurs.dinosaur_id
+        ORDER BY Dinosaurs.name ASC
+    ''')
+
     dinosaurs = cur.fetchall()
     print(dinosaurs)
     conn.close()
-    return render_template('dinosaurs.html', page_title='ALL DINOSAURS', dinosaurs=dinosaurs)
+
+    return render_template(
+        'dinosaurs.html', 
+        page_title='ALL DINOSAURS',
+        dinosaurs=dinosaurs
+    )
 
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.0.1", port=5000)
 
-@app.route('/add_dinosaur', methods=['GET', 'POST'])
+@app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
     #POST = form submitted
     if request.method == 'POST':

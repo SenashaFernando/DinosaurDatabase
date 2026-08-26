@@ -13,7 +13,7 @@
     <label>Era</label><br>
     {% for era in all_eras %}
         <input type="checkbox" name="eras" value="{{era[0]}}"> {{era[1]}}<br>
-        {% endfor %}
+    {% endfor %}
 
         <br>
         
@@ -24,9 +24,8 @@
 
 </form>
 
-{% endblock %}
 
-#validating image type
+{% endblock %}
 
 ALLOWED_EXTENTIONS = {'png', 'jpg', 'gif'}
 
@@ -34,4 +33,3 @@ if image_file and image_file.filename != '' :
 ext = image_file.filename.rsplit('.', 1) [1].lower()
 if ext not in ALLOWED_EXTENTIONS:
 return "Invalid image type"
-
