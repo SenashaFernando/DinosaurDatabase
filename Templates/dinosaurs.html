@@ -2,8 +2,10 @@
 {% block content %}
 <h1 style= "color : rgb(12,4,56);" >ALL DINOSAURS</h1>
 
-<div class= "dinosaur-grid">
+<div class="dinosaur-grid">
+
     {% for dinosaur in dinosaurs %}
+
     <div class= "dinosaur-card">
 
         <h3>{{ dinosaur[1] }}</h3>
@@ -13,30 +15,35 @@
             alt= "{{ dinosaur[1] }}" >
         {% else %}
             <div class="no-image">No Image Found</div>
-
-        {%if Era[1] %}
-         <div class="hidden-info">
-         <p><strong>Era:</strong>{{Era[4]}}</p>
         {% endif %}
 
-        <form method="POST" action="/delete/{{ Dinosaur[0] }}"
-               onsubmit="return confirm('Delete this dinosaur?')">
-            <button  type="submit" class="delete-btn">Delete</button>
-        </form>
 
-
-    </div>
+        <div class="hidden-info">
+            <p><strong>Diet:</strong> {{ dinosaur[2] }}</p>
+            <p><strong>Habitat:</strong> {{ dinosaur[3] }}</p>
+            <p><strong>Location:</strong> {{ dinosaur[4] }}</p>
+            <p><strong>Era:</strong> {{ dinosaur[8] }}</p>
+            <p><strong>Description:</strong> {{ dinosaur[5] }}</p>
+            <p><strong>Image License:</strong> {{ dinosaur[7] }}</p>
+        </div>
 
     {% if session.get('admin') %}
-    <form method="POST" action="/delete/{{ Dinosaur[1] }}"
-    onsubmit="return confirm('Delete this dinosaur?')">
-    <button type="submit" class="delete-btn">Delete</button>
-    </form>
+        <form method="POST" 
+              action="/delete/{{ dinosaur[0] }}"
+              onsubmit="return confirm('Delete this dinosaur?')">
+
+            <button type="submit" class="delete-btn">
+                Delete
+            </button>
+
+        </form>
     {% endif %}
 
-    </div>
+</div>
+
     {% endfor %}
- </div>
+
+</div>
 
  {% endblock %}
 
