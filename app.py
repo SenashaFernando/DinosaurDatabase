@@ -48,8 +48,6 @@ def dinosaurs_page():
         dinosaurs=dinosaurs
     )
 
-if __name__ == "__main__":
-    app.run(debug=True, host="127.0.0.1", port=5000)
 
 @app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
@@ -60,7 +58,8 @@ def add_dinosaur():
         habitat     = request.form['habitat']
         location    = request.form['location']
         description = request.form['description']
-        era_name    = request.form['era_name']
+        eras        = request.form.getlist('eras')
+        license_info= request.form['license_info']
 
     #Handle the uploaded image file
         image_file = request.files['image']
@@ -77,17 +76,15 @@ def add_dinosaur():
 
         #insert new dinosaur
         cur.execute(
-            
+            '''
+            INSERT INTO Dinosaurs
+            (name, diet, habitat, location, description, image, license_info)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''',
+            (name, diet, habitat, location, description, filename, license_info)
+
         )
 
-@app.route('/delete/<int:id>' , methods=['POST'])
-def delete_dinosaur(id):
-    conn = sqlite3.connect('dinosaurs.db')
-    cur = conn.cursor()
-    cur.execute('DELETE FROM Dinosaurs WHERE dinosaur_id = ?', (id,))
-    conn.commit()
-    conn.close()
-    return redirect(url_for('dinosaurs_page'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -120,3 +117,5 @@ def delete_dinosaur(id):
     conn.close()
     return redirect(url_for('dinosaurs_page'))
 
+if __name__ == "__main__":
+    app.run(debug=True, host="127.0.0.1", port=5000)
