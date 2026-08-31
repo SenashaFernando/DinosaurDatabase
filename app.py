@@ -82,9 +82,23 @@ def add_dinosaur():
             VALUES (?, ?, ?, ?, ?, ?, ?)
             ''',
             (name, diet, habitat, location, description, filename, license_info)
-
         )
 
+        #Get the new dinosaur's id
+        dinosaur_id = cur.lastrowid
+
+        #connect the dinosaur to its selected eras 
+        for era_id in eras:
+            cur.execute(
+                'INSERT INTO Dino_Era (era_id, dinosaur_id) VALUES (?, ?) ',
+                 (era_id, dinosaur_id)
+                )
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('dinosaurs_page'))
+       
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
