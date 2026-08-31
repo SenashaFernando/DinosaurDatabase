@@ -6,6 +6,9 @@ from werkzeug.utils import secure_filename
 app =Flask(__name__)
 app.secret_key = "supersecretkey"
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'gif'}
+
+
 @app.route("/")
 def root():
     return render_template("home.html", page_title="Home", greeting="Database connected")
@@ -64,9 +67,15 @@ def add_dinosaur():
     #Handle the uploaded image file
         image_file = request.files['image']
 
-        if image_file and image_file.filename != '':
+        if image_file and image_file.filename != '' :
+            ext = image_file.filename.rsplit('.', 1) [1].lower()
+
+            if ext not in ALLOWED_EXTENSIONS:
+                return "Invalid image type"
+
             filename = secure_filename(image_file.filename)
             image_file.save(os.path.join('static', 'images', filename))
+
         else:
             filename = None #No image uploaded
 
