@@ -107,7 +107,15 @@ def add_dinosaur():
         conn.close()
 
         return redirect(url_for('dinosaurs_page'))
-       
+    
+    conn.close()
+
+    return render_template(
+        'add_dinosaur.html',
+        page_title='ADD DINOSAUR',
+        all_eras=all_eras
+    )
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -142,3 +150,4 @@ def delete_dinosaur(id):
 
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.0.1", port=5000)
+
