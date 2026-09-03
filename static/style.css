@@ -49,7 +49,7 @@ nav a{
 }
 
 /* info appear when the card is hovered*/
-.dinosaur-card :hover .hidden-info {
+.dinosaur-card:hover .hidden-info {
     display: block;
 }
 
