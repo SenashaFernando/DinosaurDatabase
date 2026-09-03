@@ -54,6 +54,16 @@ def dinosaurs_page():
 
 @app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
+
+    if not session.get('admin'):
+        return "Not authorised", 403
+
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+
+    cur.execute('SELECT era_id, era_name FROM Era ORDER BY era_name ASC')
+    all_eras = cur.fetchall()
+
     #POST = form submitted
     if request.method == 'POST':
         name        = request.form['name']
@@ -78,10 +88,6 @@ def add_dinosaur():
 
         else:
             filename = None #No image uploaded
-
-        #Connect to database
-        conn = sqlite3.connect('dinosaurs.db')
-        cur = conn.cursor()
 
         #insert new dinosaur
         cur.execute(
