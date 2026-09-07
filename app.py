@@ -51,12 +51,35 @@ def dinosaurs_page():
         dinosaurs=dinosaurs
     )
 
+@app.route("/dinosaur/<int:id>")
+def dinosaur_details(id):
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+
+    cur.execute('''
+        SELECT
+            dinosaur_id,
+            name,
+            diet,
+            habitat,
+            location,
+            description,
+            image,
+            license_info
+        FROM Dinosaurs
+        WHERE dinosaur_id = ?
+    ''', (id,))
+        
+    dinosaur = cur.fetchone()
+    conn.close()
+
+    return render_template("dinosaur_details.html", dinosaur=dinosaur)
 
 @app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
 
     if not session.get('admin'):
-        return "Not authorised", 403
+        return "You need to be logged in to edit this information", 403
 
     conn = sqlite3.connect('dinosaurs.db')
     cur = conn.cursor()
