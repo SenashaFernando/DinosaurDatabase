@@ -58,16 +58,22 @@ def dinosaur_details(id):
 
     cur.execute('''
         SELECT
-            dinosaur_id,
-            name,
-            diet,
-            habitat,
-            location,
-            description,
-            image,
-            license_info
+            Dinosaurs.dinosaur_id,
+            Dinosaurs.name,
+            Dinosaurs.diet,
+            Dinosaurs.habitat,
+            Dinosaurs.location,
+            Dinosaurs.description,
+            Dinosaurs.image,
+            Dinosaurs.license_info,
+            GROUP_CONCAT(Era.era_name) AS eras
         FROM Dinosaurs
-        WHERE dinosaur_id = ?
+        LEFT JOIN Dino_Era
+            ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
+        LEFT JOIN Era
+            ON Dino_Era.era_id = Era.era_id
+        WHERE Dinosaurs.dinosaur_id = ?
+        GROUP BY Dinosaurs.dinosaur_id
     ''', (id,))
         
     dinosaur = cur.fetchone()
