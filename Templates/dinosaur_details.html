@@ -3,15 +3,22 @@
 
 <h1>{{dinosaur[1]}}</h1>
 
-{% if dinosaur[6] %}
-    <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
-        alt="{{ dinosaur[1] }}"
-        width="300">
-{% else %}
-    <p>No image found.</p>
-{% endif %}
+<div class="image-container">
 
-<p><strong>License:</strong>{{ dinosaur[7] }}</p>
+    {% if dinosaur[6] %}
+        <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
+            alt="{{ dinosaur[1] }}"
+            width="300">
+
+        <div class="image-license">
+            {{ dinosaur[7] }}
+        </div>
+
+    {% else %}
+    <p>No image found.</p>
+    {% endif %}
+
+</div>
 
 <p><strong>Diet:</strong>{{ dinosaur[2] }}</p>
 
@@ -24,7 +31,5 @@
 
 <a href="{{ url_for('dinosaurs_page') }}">⬅ Back to all dinosaurs</a>
 
-
-# direct to eras description in browse eras page when the era of the dinosaur is clicked later.
 
 {% endblock %}

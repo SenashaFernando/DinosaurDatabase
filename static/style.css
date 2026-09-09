@@ -125,3 +125,17 @@ footer {
     color: black;
     text-decoration: none;
 }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-license {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .image-license {
+    opacity: 1;
+}
