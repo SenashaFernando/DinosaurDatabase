@@ -7,8 +7,8 @@
     {% for dinosaur in dinosaurs %}
 
     <div class= "dinosaur-card">
-
-        <h3>{{ dinosaur[1] }}</h3>
+        <a href="{{ url_for('dinosaur_details', id=dinosaur[0]) }}" class="card-link">
+            <h3>{{ dinosaur[1] }}</h3>
 
         {% if dinosaur[6] %}
          <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
@@ -24,6 +24,8 @@
             <p><strong>Location:</strong> {{ dinosaur[4] }}</p>
             <p><strong>Era:</strong> {{ dinosaur[8] }}</p>
         </div>
+
+        </a>
 
     {% if session.get('admin') %}
         <form method="POST" 

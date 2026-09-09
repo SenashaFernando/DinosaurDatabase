@@ -1,45 +1,30 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<h2>{{Dinosaurs[1]}}</h2>
+<h1>{{dinosaur[1]}}</h1>
 
-{% if Dinosaurs[6] %}
-    <img src="{{ url_for('static', filename='images/'~ Dinosaurs[3]) }}"
-width="300">
+{% if dinosaur[6] %}
+    <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
+        alt="{{ dinosaur[1] }}"
+        width="300">
+{% else %}
+    <p>No image found.</p>
 {% endif %}
 
-{% if Dinosaurs[7] %}
-<p><strong>License:</strong>{{Dinosaurs[7]}}</p>
-{% endif %}
+<p><strong>License:</strong>{{ dinosaur[7] }}</p>
 
-<p><strong>Era:</strong></p> ${{ "%.2f" |format(Dino_Era[2]) }}</p>
+<p><strong>Diet:</strong>{{ dinosaur[2] }}</p>
 
-{% if Dinosaurs[2] %}
-<p><strong>Diet:</strong>{{Dinosaurs[2]}}</p>
-{% endif %}
+<p><strong>Habitat:</strong>{{ dinosaur[3] }}</p>
 
-{% if Dinosaurs[3] %}
-<p><strong>Habitat:</strong>{{Dinosaurs[3]}}</p>
-{% endif %}
+<p><strong>Location:</strong>{{ dinosaur[4] }}</p>
 
-{% if Dinosaurs[4] %}
-<p><strong>Location:</strong>{{Dinosaurs[4]}}</p>
-{% endif %}
-
-{% if Dinosaurs[5] %}
-<details class="dino-description-card">
-    <summary class="dino-text">
-        <p><strong>Description:</strong>{{Dinosaurs[5].description}}</p>
-        
-    </summary>
-</details>
-
-#edit code later to alow the description to be displayed or hidden. make a card in css
-{% endif %}
-
-<a href="/dinosaurs">⬅ Back to all dinosaurs</a>
+<p><strong>Description:</strong>{{ dinosaur[5] }}</p>
 
 
-# direct to eras description in browse eras page when the era of the dinosaur is clicked.
+<a href="{{ url_for('dinosaurs_page') }}">⬅ Back to all dinosaurs</a>
+
+
+# direct to eras description in browse eras page when the era of the dinosaur is clicked later.
 
 {% endblock %}
