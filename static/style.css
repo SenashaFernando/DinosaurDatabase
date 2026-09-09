@@ -119,3 +119,8 @@ footer {
 .era-description-card :hover .hidden-info{
     display: block;
 }
+
+.card-link {
+    color: black;
+    text-decoration: none;
+}
