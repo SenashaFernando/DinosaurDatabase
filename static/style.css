@@ -59,6 +59,33 @@ footer p {
     margin: 3px;
 }
 
+.home-content {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.home-content h2 {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.home-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.home-links a {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 8px;
+    background-color: #dcefe1;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+
+
 /* container for all dinosaur cards*/
 .dinosaur-grid {
     display: grid;
