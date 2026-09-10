@@ -194,7 +194,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('admin', None)
-    return redirect(url_for('dinosaurs_page'))
+    return render_template('logout.html')
 
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_dinosaur(id):
