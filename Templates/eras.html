@@ -7,10 +7,10 @@
 
     {% for era in eras %}
 
-    <div class="era-description-card">
-        <h2>{{ era[1] }}</h2>
+    <details class="era-description-card">
+        <summary>{{ era[1] }}</summary>
         <p>{{ era[2] }}</p>
-    </div>
+    </details>
 
     {% endfor %}
 
