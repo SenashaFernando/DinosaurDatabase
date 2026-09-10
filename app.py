@@ -105,13 +105,14 @@ def eras_page():
         eras=eras
     )
 
-
 @app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
 
     if not session.get('admin'):
-        return "You need to be logged in to edit this information", 403
-
+        return render_template('login_required.html',
+            previous_page=request.referrer or url_for('root')
+        )
+    
     conn = sqlite3.connect('dinosaurs.db')
     cur = conn.cursor()
 

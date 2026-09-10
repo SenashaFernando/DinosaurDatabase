@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="login-required">
+
+    <h2>You need to be logged in to edit this information.</h2>
+    <p>Please log in to add a dinosaur.</p>
+
+    <a href="/login">Login</a>
+    <a href="{{ previous_page }}">Return to previous page</a>
+
+</div>
+
+{% endblock %}
