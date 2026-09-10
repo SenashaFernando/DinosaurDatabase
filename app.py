@@ -31,7 +31,7 @@ def dinosaurs_page():
             Dinosaurs.description,
             Dinosaurs.image,
             Dinosaurs.license_info,
-            GROUP_CONCAT(Era.era_name) AS eras
+            GROUP_CONCAT(Era.era_name, ', ') AS eras
         FROM Dinosaurs
         LEFT JOIN Dino_Era
             ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
@@ -66,7 +66,7 @@ def dinosaur_details(id):
             Dinosaurs.description,
             Dinosaurs.image,
             Dinosaurs.license_info,
-            GROUP_CONCAT(Era.era_name) AS eras
+            GROUP_CONCAT(Era.era_name, ', ') AS eras
         FROM Dinosaurs
         LEFT JOIN Dino_Era
             ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
