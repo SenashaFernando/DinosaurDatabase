@@ -4,10 +4,23 @@ body {
     margin: 20px auto;
 }
 
-header {
-    background: #ffe9c6;
+.site-header {
+    background: #97c4a2;
     padding: 12px;
     border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    min-height: 80px;
+}
+
+.site-header h1 {
+    margin: 0;
+}
+
+.site-header p{
+    margin: 0;
 }
 
 nav{
