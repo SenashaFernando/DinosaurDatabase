@@ -81,6 +81,31 @@ def dinosaur_details(id):
 
     return render_template("dinosaur_details.html", dinosaur=dinosaur)
 
+
+@app.route("/eras")
+def eras_page():
+    conn = sqlite3.connect('dinosaurs.db')
+    cur = conn.cursor()
+
+    cur.execute('''
+    SELECT
+        era_id,
+        era_name,
+        description
+    FROM Era
+    ORDER BY era_name ASC
+    ''')
+
+    eras = cur.fetchall()
+    conn.close()
+
+    return render_template(
+        "eras.html",
+        page_title="ERAS",
+        eras=eras
+    )
+
+
 @app.route('/add_dinosaur', methods=["GET", "POST"])
 def add_dinosaur():
 

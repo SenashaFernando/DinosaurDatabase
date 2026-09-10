@@ -1,6 +1,19 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<h1 style= "color : rgb(12,4,56);" >ERAS</h1>
+<h1>ERAS</h1>
+
+<div class="era-grid">
+
+    {% for era in eras %}
+
+    <div class="era-description-card">
+        <h2>{{ era[1] }}</h2>
+        <p>{{ era[2] }}</p>
+    </div>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}
