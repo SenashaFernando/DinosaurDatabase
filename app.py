@@ -47,7 +47,7 @@ def dinosaurs_page():
 
     return render_template(
         'dinosaurs.html', 
-        page_title='ALL DINOSAURS',
+        page_title='DINOSAURS',
         dinosaurs=dinosaurs
     )
 

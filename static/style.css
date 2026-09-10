@@ -25,6 +25,11 @@ body {
     margin: 0;
 }
 
+.header-link {
+    color: inherit;
+    text-decoration: none;
+}
+
 nav {
     margin-top: 0;
     padding: 10px;
@@ -43,10 +48,15 @@ nav a {
 
 
 footer {
+    text-align: center;
     margin-top: 20px;
     padding: 10px;
-    background: #f2f2f2;
+    background: #6dbb78;
     border-radius: 8px;
+}
+
+footer p {
+    margin: 3px;
 }
 
 /* container for all dinosaur cards*/
