@@ -18,28 +18,53 @@ def root():
 @app.route("/dinosaurs")
 def dinosaurs_page():
 
+    search = request.args.get('search', '')
+
     conn = sqlite3.connect("dinosaurs.db")
     cur = conn.cursor()
 
-    cur.execute('''
-        SELECT
-            Dinosaurs.dinosaur_id,
-            Dinosaurs.name,
-            Dinosaurs.diet,
-            Dinosaurs.habitat,
-            Dinosaurs.location,
-            Dinosaurs.description,
-            Dinosaurs.image,
-            Dinosaurs.license_info,
-            GROUP_CONCAT(Era.era_name, ', ') AS eras
-        FROM Dinosaurs
-        LEFT JOIN Dino_Era
-            ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
-        LEFT JOIN Era
-            ON Dino_Era.era_id = Era.era_id
-        GROUP BY Dinosaurs.dinosaur_id
-        ORDER BY Dinosaurs.name ASC
-    ''')
+    if search:
+        cur.execute('''
+             SELECT
+                 Dinosaurs.dinosaur_id,
+                 Dinosaurs.name,
+                 Dinosaurs.diet,
+                 Dinosaurs.habitat,
+                 Dinosaurs.location,
+                 Dinosaurs.description,
+                 Dinosaurs.image,
+                 Dinosaurs.license_info,
+                 GROUP_CONCAT(Era.era_name, ', ') AS eras
+             FROM Dinosaurs
+             LEFT JOIN Dino_Era
+                 ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
+             LEFT JOIN Era
+                 ON Dino_Era.era_id = Era.era_id
+             WHERE Dinosaurs.name LIKE ?
+             GROUP BY Dinosaurs.dinosaur_id
+             ORDER BY Dinosaurs.name ASC
+         ''', ('%' + search + '%'))
+
+    else:
+        cur.execute('''
+            SELECT
+                Dinosaurs.dinosaur_id,
+                Dinosaurs.name,
+                Dinosaurs.diet,
+                Dinosaurs.habitat,
+                Dinosaurs.location,
+                Dinosaurs.description,
+                Dinosaurs.image,
+                Dinosaurs.license_info,
+                GROUP_CONCAT(Era.era_name, ', ') AS eras
+            FROM Dinosaurs
+            LEFT JOIN Dino_Era
+                ON Dinosaurs.dinosaur_id = Dino_Era.dinosaur_id
+            LEFT JOIN Era
+                ON Dino_Era.era_id = Era.era_id
+            GROUP BY Dinosaurs.dinosaur_id
+            ORDER BY Dinosaurs.name ASC
+        ''')
 
     dinosaurs = cur.fetchall()
     print(dinosaurs)
