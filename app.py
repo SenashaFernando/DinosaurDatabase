@@ -43,7 +43,7 @@ def dinosaurs_page():
              WHERE Dinosaurs.name LIKE ?
              GROUP BY Dinosaurs.dinosaur_id
              ORDER BY Dinosaurs.name ASC
-         ''', ('%' + search + '%'))
+         ''', ('%' + search + '%',))
 
     else:
         cur.execute('''

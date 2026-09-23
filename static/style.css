@@ -240,3 +240,17 @@ footer p {
     text-decoration: none;
     border-radius: 8px;
 }
+
+.search-form {
+    display: flex;
+    margin: 10px 20px 20px 20px;
+}
+
+.search-form input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px 0 0 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
