@@ -142,7 +142,7 @@ footer p {
     margin-top: 10px;
 }
 
-.delete-btn :hover {
+.delete-btn:hover {
     background-color: #991111;
 }
 
@@ -162,13 +162,20 @@ footer p {
 }
 
 .image-license {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    position: fixed;
+    display: none;
+
+    background-color: #c2c2c2;
+    border: 1px solid black;
+    padding: 4px 7px;
+
+    font-size: 12px;
+    color: black;
+
+    pointer-events: none;
+    z-index: 1000;
 }
 
-.image-container:hover .image-license {
-    opacity: 1;
-}
 
 .era-grid {
     display: grid;

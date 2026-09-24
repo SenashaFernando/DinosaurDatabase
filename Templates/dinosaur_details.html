@@ -34,4 +34,27 @@
 <a href="{{ url_for('dinosaurs_page') }}">⬅ Back to all dinosaurs</a>
 
 
+<script>
+const imageContainer = document.querySelector('.image-container');
+const license = document.querySelector('.image-license');
+
+let hoverTimer;
+
+imageContainer.addEventListener('mouseenter', function(){
+    hoverTimer = setTimeout(function() {
+        license.style.display = 'block';
+    }, 400);
+});
+
+imageContainer.addEventListener('mouseleave', function() {
+    license.style.display = 'none';
+});
+
+imageContainer.addEventListener('mousemove', function(event) {
+    license.style.left = (event.clientX + 10) + 'px';
+    license.style.top = (event.clientY + 10) + 'px';
+});
+</script>
+
+
 {% endblock %}
