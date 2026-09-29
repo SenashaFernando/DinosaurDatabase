@@ -180,7 +180,12 @@ def add_dinosaur():
             ext = image_file.filename.rsplit('.', 1) [1].lower()
             #check weather the uploaded file has an alowed extension
             if ext not in ALLOWED_EXTENSIONS:
-                return "Invalid image type"
+                return '''
+                    <script>
+                        alert("Invalid image type. Please select a PNG, JPG, or GIF image.");
+                        window.history.back();
+                    </script>
+                '''
             #make the filename secure and save the img
             filename = secure_filename(image_file.filename)
             image_file.save(os.path.join('static', 'images', filename))

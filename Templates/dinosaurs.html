@@ -9,28 +9,33 @@
 
 <div class="dinosaur-grid">
 
-    {% for dinosaur in dinosaurs %}
+    <!--check if any dinosaurs were found-->
+    <!--if / else selection-->
+    {% if dinosaurs %}
+            <!--FOR LOOP / ITERATION-->
+        {% for dinosaur in dinosaurs %}
 
-    <div class= "dinosaur-card">
-        <a href="{{ url_for('dinosaur_details', id=dinosaur[0]) }}" class="card-link">
-            <h3>{{ dinosaur[1] }}</h3>
+        <div class= "dinosaur-card">
+            <a href="{{ url_for('dinosaur_details', id=dinosaur[0]) }}" class="card-link">
+                <!--database data being displayed-->
+                <h3>{{ dinosaur[1] }}</h3>
 
-        {% if dinosaur[6] %}
-         <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
-            alt= "{{ dinosaur[1] }}" >
-        {% else %}
-            <div class="no-image">No Image Found</div>
-        {% endif %}
+            {% if dinosaur[6] %}
+            <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
+                alt= "{{ dinosaur[1] }}" >
+            {% else %}
+                <div class="no-image">No Image Found</div>
+            {% endif %}
 
 
-        <div class="hidden-info">
-            <p><strong>Diet:</strong> {{ dinosaur[2] }}</p>
-            <p><strong>Habitat:</strong> {{ dinosaur[3] }}</p>
-            <p><strong>Location:</strong> {{ dinosaur[4] }}</p>
-            <p><strong>Era:</strong> {{ dinosaur[8] }}</p>
-        </div>
+            <div class="hidden-info">
+                <p><strong>Diet:</strong> {{ dinosaur[2] }}</p>
+                <p><strong>Habitat:</strong> {{ dinosaur[3] }}</p>
+                <p><strong>Location:</strong> {{ dinosaur[4] }}</p>
+                <p><strong>Era:</strong> {{ dinosaur[8] }}</p>
+            </div>
 
-        </a>
+            </a>
 
     {% if session.get('admin') %}
         <form method="POST" 
@@ -47,6 +52,11 @@
     </div>
 
     {% endfor %}
+
+{% else %}
+    <!--message shown when there are no search results-->
+    <p>No dinosaurs found.</p>
+{% endif %}
 
 </div>
 

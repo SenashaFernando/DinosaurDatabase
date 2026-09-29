@@ -121,7 +121,7 @@ footer p {
     padding-bottom: 40px;
 }
 
-/* iexpand when the card is hovered*/
+/* expand when the card is hovered*/
 .dinosaur-card:hover .hidden-info {
     display: block;
     animation: show-info 0.3s ease 0.3s forwards;
@@ -270,4 +270,10 @@ footer p {
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.home-dinosaur {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
 }
