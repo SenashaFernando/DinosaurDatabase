@@ -3,33 +3,41 @@
 
 <h1>{{dinosaur[1]}}</h1>
 
-<div class="image-container">
+<div class="dinosaur-details">
 
-    {% if dinosaur[6] %}
-        <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
-            alt="{{ dinosaur[1] }}"
-            width="300">
+    <div class="image-container">
 
-        <div class="image-license">
-            {{ dinosaur[7] }}
-        </div>
+        {% if dinosaur[6] %}
+            <img src="{{ url_for('static', filename='images/'~ dinosaur[6]) }}"
+                alt="{{ dinosaur[1] }}"
+                width="300">
 
-    {% else %}
-    <p>No image found.</p>
-    {% endif %}
+
+            <div class="image-license">
+                {{ dinosaur[7] }}
+            </div>
+
+        {% else %}
+        <p>No image found.</p>
+        {% endif %}
+
+    </div>
+
+    <div class="dinosaur-info">
+
+        <p><strong>Era:</strong> {{ dinosaur[8] }}</p>
+
+        <p><strong>Diet:</strong> {{ dinosaur[2] }}</p>
+
+        <p><strong>Habitat:</strong> {{ dinosaur[3] }}</p>
+
+        <p><strong>Location:</strong> {{ dinosaur[4] }}</p>
+
+        <p><strong>Description:</strong> {{ dinosaur[5] }}</p>
+
+    </div>
 
 </div>
-
-<p><strong>Era:</strong> {{ dinosaur[8] }}</p>
-
-<p><strong>Diet:</strong> {{ dinosaur[2] }}</p>
-
-<p><strong>Habitat:</strong> {{ dinosaur[3] }}</p>
-
-<p><strong>Location:</strong> {{ dinosaur[4] }}</p>
-
-<p><strong>Description:</strong> {{ dinosaur[5] }}</p>
-
 
 <a href="{{ url_for('dinosaurs_page') }}">⬅ Back to all dinosaurs</a>
 

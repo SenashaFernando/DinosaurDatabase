@@ -67,7 +67,7 @@ footer p {
 
 .home-content h2 {
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-top: 1px;
 }
 
 .home-content p {
@@ -274,6 +274,21 @@ footer p {
 
 .home-dinosaur {
     display: block;
-    width: 300px;
+    width: 350px;
     margin: 20px auto;
+}
+
+.dinosaur-details {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.image-container {
+    position: relative;
+    width: 300px;
+}
+
+.dinosaur-info {
+    flex: 1;
 }
